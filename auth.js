@@ -1,7 +1,7 @@
 // Configurable configuration settings
-const BACKEND_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
+const BACKEND_URL = (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1')
   ? 'http://localhost:5000'
-  : window.location.origin; // Netlify rewrite routing to backend
+  : 'https://comicverse-ooir.onrender.com';
 
 localStorage.setItem('BACKEND_URL', BACKEND_URL);
 

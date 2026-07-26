@@ -6,8 +6,17 @@
 [![MongoDB](https://img.shields.io/badge/MongoDB-Database-brightgreen.svg)](https://www.mongodb.com/)
 [![Clerk](https://img.shields.io/badge/Auth-Clerk-purple.svg)](https://clerk.com/)
 [![Razorpay](https://img.shields.io/badge/Payment-Razorpay-blue.svg)](https://razorpay.com/)
+[![Vercel](https://img.shields.io/badge/Frontend-Vercel-black.svg)](https://vercel.com/)
+[![Render](https://img.shields.io/badge/Backend-Render-informational.svg)](https://render.com/)
 
 **ComicVerse** is a full-stack, feature-rich web platform dedicated to comic book enthusiasts. It offers an immersive experience where fans can explore comic universe archives, discover iconic character profiles across legendary publishers (DC, Marvel, Disney, Dark Horse, Archie), view comic-inspired movies, and purchase comic books through a seamless e-commerce store with secure payment processing and authentication.
+
+---
+
+## 🔗 Live Deployments
+
+- 🌐 **Frontend (Vercel)**: Deployed on Vercel Global CDN
+- ⚙️ **Backend API (Render)**: [https://comicverse-ooir.onrender.com](https://comicverse-ooir.onrender.com)
 
 ---
 
@@ -38,8 +47,9 @@ ComicVerse/
 ├── 📄 cancel.html         # Payment Cancellation / Failure Handler
 ├── 📄 data.js              # Shop Items Data Array (Products & Pricing)
 ├── 📄 cart.js              # Cart State Management & Razorpay Client Checkout Logic
-├── 📄 auth.js              # Clerk Auth Integration & Global User State Sync
+├── 📄 auth.js              # Clerk Auth Integration & Render Backend URL Sync
 ├── 📄 script.js            # General UI Interactions & Sliders
+├── 📄 vercel.json          # Vercel Deployment & Route Rewrites Configuration
 ├── 📄 *.css                # Modular Styling (home, nav, footer, store, char, movies)
 ├── 📁 server/              # Express Backend Microservice
 │   ├── 📄 server.js        # Entry point & CORS configuration
@@ -60,12 +70,14 @@ ComicVerse/
 ## ⚙️ Tech Stack
 
 ### **Frontend**
+- **Hosting**: Vercel
 - **Core**: HTML5, Vanilla JavaScript (ES6+)
 - **Styling**: Vanilla CSS3 (Custom Dark Theme, Flexbox, CSS Grid, Micro-animations)
 - **Authentication**: `@clerk/clerk-js` Browser SDK
 - **Payments**: Razorpay Checkout (`checkout.js`)
 
 ### **Backend**
+- **Hosting**: Render
 - **Runtime**: Node.js & Express.js
 - **Database**: MongoDB with Mongoose ORM
 - **Security**: `@clerk/clerk-sdk-node` for server token validation, Crypto HMAC SHA-256 for payment validation
@@ -84,20 +96,48 @@ Security is prioritized across the codebase:
 
 ---
 
-## 🚀 Getting Started
+## ☁️ Deployment Guide
 
-### Prerequisites
+### 1. Backend Deployment (Render)
 
-Ensure you have the following installed on your environment:
-- [Node.js](https://nodejs.org/) (v16 or higher)
-- [npm](https://www.npmjs.com/)
-- [MongoDB](https://www.mongodb.com/) (Local instance or MongoDB Atlas cluster)
-- A [Clerk](https://clerk.com/) account (Publishable & Secret Keys)
-- A [Razorpay](https://razorpay.com/) Developer account (Test Key ID & Key Secret)
+1. Create a **Web Service** on [Render](https://dashboard.render.com).
+2. Connect the GitHub Repository: `sathwikchava/ComicVerse`.
+3. Set the build settings:
+   - **Root Directory**: `server`
+   - **Build Command**: `npm install`
+   - **Start Command**: `npm start` *(or `node server.js`)*
+4. Configure the **Environment Variables** in the Render Dashboard:
+
+| Variable | Description | Example |
+| :--- | :--- | :--- |
+| `MONGO_URI` | MongoDB Connection URI | `mongodb+srv://user:pass@cluster.mongodb.net/comicverse` |
+| `RAZORPAY_KEY_ID` | Razorpay API Key ID | `rzp_test_...` |
+| `RAZORPAY_KEY_SECRET` | Razorpay Key Secret | `wX8...` |
+| `CLERK_PUBLISHABLE_KEY` | Clerk Publishable Key | `pk_test_...` |
+| `CLERK_SECRET_KEY` | Clerk Secret Key | `sk_test_...` |
 
 ---
 
-### Installation & Environment Setup
+### 2. Frontend Deployment (Vercel)
+
+1. Create a new project on [Vercel](https://vercel.com/new).
+2. Import the GitHub Repository: `sathwikchava/ComicVerse`.
+3. Select **Framework Preset**: `Other` (Static Site).
+4. Set **Root Directory**: `./` (Default).
+5. Leave **Environment Variables** empty (No env vars required on Vercel; `auth.js` automatically connects to the Render API).
+6. Click **Deploy**.
+
+---
+
+## 🚀 Local Development Setup
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v16 or higher)
+- [npm](https://www.npmjs.com/)
+- [MongoDB](https://www.mongodb.com/) (Local instance or MongoDB Atlas cluster)
+
+### Installation & Execution
 
 #### 1. Clone the Repository
 ```bash
@@ -122,29 +162,19 @@ CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
 CLERK_SECRET_KEY=your_clerk_secret_key
 ```
 
-#### 3. Install Server Dependencies
+#### 3. Launch Backend Server
 ```bash
 npm install
-```
-
-#### 4. Launch the Backend Server
-```bash
 npm start
 # Server runs at http://localhost:5000
 ```
 
----
-
-### Running the Frontend
-
-You can serve the root frontend directory using any static web server (such as VS Code Live Server or `npx serve .`):
-
+#### 4. Launch Frontend
+Serve the root folder using Live Server or `npx serve`:
 ```bash
-# Run static file server from root directory
 npx serve .
+# Open http://localhost:3000
 ```
-
-Open `http://localhost:3000` (or `http://127.0.0.1:5500/home.html`) in your web browser.
 
 ---
 
@@ -152,7 +182,8 @@ Open `http://localhost:3000` (or `http://127.0.0.1:5500/home.html`) in your web 
 
 | Method | Endpoint | Description | Auth Required |
 | :--- | :--- | :--- | :--- |
-| `GET` | `/` | Health check endpoint | No |
+| `GET` | `/` | Serves `home.html` frontend landing page | No |
+| `GET` | `/api/health` | Backend server health check | No |
 | `POST` | `/api/payment/create-order` | Initiates a Razorpay order & creates a pending DB entry | Yes (Bearer Token) |
 | `POST` | `/api/payment/verify` | Verifies Razorpay payment signature & updates order to paid | Yes (Bearer Token) |
 
@@ -165,7 +196,7 @@ Contributions, issues, and feature requests are welcome! Feel free to check the 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/ComicFeature`)
 3. Commit your Changes (`git commit -m 'Add exciting new ComicFeature'`)
-4. Push to the Branch (`git checkout -b feature/ComicFeature`)
+4. Push to the Branch (`git push origin feature/ComicFeature`)
 5. Open a Pull Request
 
 ---

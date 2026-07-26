@@ -1,0 +1,909 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    border: none;
+    outline: none;
+}
+
+body{
+    background-image: linear-gradient( rgba(0,0,0,0.9),rgba(0,0,0,0.9)),url("https://res.cloudinary.com/de27xvxon/image/upload/v1717448163/images_egbhbs.jpg");
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 130vh;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+/*==Nav Bar==*/
+
+.navbar{
+    margin-top: 100px;
+}
+header{
+    width:100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position:fixed;
+    z-index: 99;
+    box-shadow: 5px 5px 5px 5px #000;
+    background: rgb(0, 0, 0);
+    top: 0;
+    left: 0;
+}
+#chk1{
+    display: none;
+}
+i{
+    color: #000000;
+    cursor: pointer;
+}
+.logo{
+    flex: 1;
+    color:#fff;
+    color: #ffffff;
+    font: normal 30px 'Cookie', cursive;
+    margin-left: 50px;
+    margin-bottom: 5px;
+}
+header .logo h3 span {
+    color: greenyellow;
+    margin-bottom: 30px;
+}
+
+.search-box{
+    flex: 1;
+    position: relative;
+    margin-bottom: 3px;
+    margin-right: 250px;
+}
+.search-box input{
+    width:100%;
+    height: 40px;
+    border: none;
+    outline: none;
+    background:#f2f2f2;
+    border-radius: 30px;
+    color:rgb(0, 0, 0);
+    font-size: 16px;
+    padding-left: 5px;
+    padding-right: 40px;
+    text-align: center;
+}
+ 
+.search-box button{
+    cursor: pointer;
+    width:40px;
+    height: 40px;
+    border-radius: 30px;
+    border:none;
+    position: absolute;
+    top:0;
+    right: 5px;
+    transform: scale(0.9);
+    background: greenyellow;
+    color: #fff;
+    
+}
+header ul {
+    flex:2;
+    display: flex;
+    justify-content: space-evenly;
+}
+header ul li{
+    list-style: none;
+    margin-top: 50px;
+}
+header ul li a{
+    text-decoration: none;
+    color:#fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 10px 15px;
+}
+.nav_items:hover{
+    border-bottom: 2px solid greenyellow;
+    border-top:  2px solid greenyellow;
+}
+@media(max-width:1000px){
+    .search-box button{
+        position: absolute;
+    }
+    header ul{
+        position: fixed;
+        top:100px;
+        right: -100%;
+        background: rgba(0,0,0,0.5);
+        height: calc(100vh - 100px);
+        width:50%;
+        flex-direction: column;
+        align-items: center;
+        transition: right 0.5s linear;
+    }
+     
+    header .menu{
+        display: block;
+        width:100px;
+        text-align: right;
+    }
+    #search symbol:checked ~ ul{
+        right: 0;
+        
+    }
+  
+}
+.cart{
+    position: relative;
+    top:-17px; 
+}
+#cart_amount{
+    padding-bottom: 10px;
+}
+.heropage{
+    position: absolute;
+    color:white;
+   margin-top: 100px;
+   margin-left: 100px;
+}
+.inside-heropage{
+    line-height:2;
+}
+.inside-heropage h1{
+    font-size: 40px;
+}
+.inside-heropage p{
+    font-size: 17px;
+}
+span{
+    color: greenyellow;
+    font-weight: bold;
+
+}
+.line1{
+height: 2px;
+background-color:greenyellow;
+width: 12%;
+margin-left: 0px;
+margin-top: 0px;
+position: absolute;
+}
+
+.btn1{
+    margin-top: 30px;
+}
+.btn1 a{
+    background-color: greenyellow;
+    color: rgb(0, 0, 0);
+    padding: 10px 25px;
+    text-decoration: none;
+    border-radius: 30px;
+}
+.btn1 a:hover{
+    background: rgb(0, 0, 0);
+    color: greenyellow;
+}
+
+.btn1 i{
+    color:rgba(255, 255, 255, 0.758);
+    padding: 0px 10px;
+}
+.btn1 i:hover{
+    color: white;
+}
+.poster{
+    margin-top: 130px;
+    margin-right: 150px;
+}
+.poster img{
+    height:320px;
+    float: right;
+    border-radius: 10px;
+}
+.latest-movies{
+    position: absolute;
+    width:100%;
+    height: 100%;
+   background-color: black;
+    margin-top: 500px;
+    padding: 0px 20px;
+}
+.latest-movies h1{
+    font-size: 20px;
+    color:greenyellow;
+    
+}
+.latest-container{
+    padding: 10px 0px;
+}
+.latest-container{
+    display: flex;
+    margin-top: 30px;
+    justify-content: space-between;
+    align-items: center;
+}
+.latest-inside img{
+    height: 122px;
+    cursor: pointer;
+    padding: 4px;
+    transition: all 500ms ease-in-out;
+}
+.latest-inside img:hover{
+    transform: scale(1.2);
+}
+.heading1{
+    color: white;
+    line-height: 1.5;
+}
+.heading1 h4{
+    font-size: 15px;
+}
+.heading1 h6{
+    font-size: 12px;
+}
+.btn2{
+    margin-top: -30px;
+    margin-left: 150px;
+}
+.btn2 a{
+    font-size: 13px;
+    text-decoration: none;
+    background: greenyellow;
+    padding: 7px 7px;
+    border-radius: 10%;
+    color: rgb(0, 0, 0);
+
+}
+.hollywood-movies{
+    position: absolute;
+    width:100%;
+    height: 100%;
+   background-color: black;
+    padding: 0px 20px;
+    color: white;
+    margin-top: 850px;
+}
+.hollywood-movies h1{
+    font-size: 20px;
+    color:greenyellow;
+}
+.hollywood-container{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.hollywood-inside h3{
+    font-size: 15px;
+    font-weight:500;
+    margin-top: 6px;
+   
+}
+.hollywood-inside img{
+   height: 250px;
+   border-radius: 10px;
+   transition: all 500ms ease-in-out;
+}
+.hollywood-inside img:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+.imdb{
+    background: greenyellow;
+    border-radius:20px;
+    position:absolute;
+    padding: 10px 10px;
+    color: white;
+    margin-top: -80px;
+    margin-left: 120px;
+    font-weight: bolder;
+}
+.more1{
+position: absolute;
+ margin-top: 860px;
+ margin-left: 1220px;
+}
+.more1 a{
+
+    color:greenyellow;
+    font-weight: bolder;
+    text-decoration: none;
+
+}
+
+.tollywood-movies{
+    position: absolute;
+    width:100%;
+    height: 100%;
+   background-color: black;
+    padding: 0px 20px;
+    color: white;
+    margin-top: 1300px;
+}
+.tollywood-movies h1{
+    font-size: 20px;
+    color:greenyellow;
+}
+.tollywood-container{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.tollywood-inside h3{
+    font-size: 15px;
+    font-weight:500;
+    margin-top: 6px;
+   
+}
+.tollywood-inside img{
+   height: 250px;
+   transition: all 500ms ease-in-out;
+   border-radius: 10px;
+}
+.tollywood-inside img:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+.imdb{
+    background: greenyellow;
+    border-radius:20px;
+    position:absolute;
+    padding: 10px 10px;
+    color: white;
+    margin-top: -80px;
+    margin-left: 120px;
+    font-weight: bolder;
+}
+
+.collywood-movies{
+    position: absolute;
+    width:100%;
+    height: 100%;
+   background-color: black;
+    padding: 0px 20px;
+    color: white;
+    margin-top: 1750px;
+}
+.collywood-movies h1{
+    font-size: 20px;
+    color:greenyellow;
+}
+.collywood-container{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.collywood-inside h3{
+    font-size: 15px;
+    font-weight:500;
+    margin-top: 6px;
+   
+}
+.collywood-inside img{
+   height: 250px;
+   transition: all 500ms ease-in-out;
+   border-radius: 10px;
+}
+.collywood-inside img:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+.imdb{
+    background: greenyellow;
+    border-radius:20px;
+    position:absolute;
+    padding: 10px 10px;
+    color: white;
+    margin-top: -80px;
+    margin-left: 120px;
+    font-weight: bolder;
+}
+.more3{
+    position: absolute;
+    margin-top: 1300px;
+    margin-left: 1220px;
+}
+.more3 a{
+    color:greenyellow;
+    font-weight: bolder;
+    text-decoration: none;
+}
+.tollywood-movies{
+    position: absolute;
+    width:100%;
+    height: 100%;
+   background-color: black;
+    padding: 0px 20px;
+    color: white;
+    margin-top: 1300px;
+}
+.tollywood-movies h1{
+    font-size: 20px;
+    color:greenyellow;
+}
+.tollywood-container{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.tollywood-inside h3{
+    font-size: 15px;
+    font-weight:500;
+    margin-top: 6px;
+}
+.tollywood-inside img{
+   height: 250px;
+   transition: all 500ms ease-in-out;
+   border-radius: 10px;
+}
+.tollywood-inside img:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+.imdb{
+    background: greenyellow;
+    border-radius:20px;
+    position:absolute;
+    padding: 10px 10px;
+    color: white;
+    margin-top: -80px;
+    margin-left: 120px;
+    font-weight: bolder;
+}
+.more2{
+    position: absolute;
+ margin-top: 1730px;
+ margin-left: 1220px;
+}
+.more2 a{
+   color: greenyellow;
+    font-weight: bolder;
+    text-decoration: none;
+}
+.iollywood-movies{
+    position: absolute;
+    width:100%;
+    height: 100%;
+   background-color: black;
+    padding: 0px 20px;
+    color: white;
+    margin-top: 2200px;
+}
+.iollywood-movies h1{
+    font-size: 20px;
+    color:greenyellow;
+}
+.iollywood-container{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.iollywood-inside h3{
+    font-size: 15px;
+    font-weight:500;
+    margin-top: 6px;
+}
+.iollywood-inside img{
+   height: 250px;
+   transition: all 500ms ease-in-out;
+   border-radius: 10px;
+}
+.iollywood-inside img:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+.imdb{
+    background: greenyellow;
+    border-radius:20px;
+    position:absolute;
+    padding: 10px 10px;
+    color: white;
+    margin-top: -80px;
+    margin-left: 120px;
+    font-weight: bolder;
+}
+.more4{
+    position: absolute;
+ margin-top: 2200px;
+ margin-left: 1220px;
+}
+.more4 a{
+    color:greenyellow;
+    font-weight: bolder;
+    text-decoration: none;
+}
+.sollywood-movies{
+    position: absolute;
+    width:100%;
+    height: 75%;
+   background-color: black;
+    padding: 0px 20px;
+    color: white;
+    margin-top: 2650px;
+}
+.sollywood-movies h1{
+    font-size: 20px;
+    color:greenyellow;
+}
+.sollywood-container{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.sollywood-inside h3{
+    font-size: 15px;
+    font-weight:500;
+    margin-top: 6px;
+   
+}
+.sollywood-inside img{
+   height: 250px;
+   border-radius: 10px;
+   transition: all 500ms ease-in-out;
+}
+.sollywood-inside img:hover{
+    transform: scale(1.1);
+    cursor: pointer;
+}
+.imdb{
+    background: greenyellow;
+    border-radius:20px;
+    position:absolute;
+    padding: 10px 10px;
+    color: white;
+    margin-top: -80px;
+    margin-left: 120px;
+    font-weight: bolder;
+}
+.more5{
+position: absolute;
+ margin-top: 860px;
+ margin-left: 1220px;
+}
+.more5 a{
+
+    color:greenyellow;
+    font-weight: bolder;
+    text-decoration: none;
+}
+.akira{
+
+    position: absolute;
+    height:100%;
+    width: 100%;
+    background: black;
+    color: white;
+    margin-top: 3100px;
+}
+.yt-movies{
+    padding: 10px 170px;
+    line-height: 1.9;
+}
+.yt-movies h1{
+    color:greenyellow;
+}
+.yt-movies p{
+    font-size: 25px;
+}
+.line{
+    height: 2px;
+    background-color: white;
+    width: 7%;
+    margin-left: 170px;
+    position: absolute;
+}
+.yt-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.inside-yt img{
+    padding: 10px 0px;
+    height: 350px;
+    border-radius: 50px;
+}
+.heading2 p{
+    font-size: 15px;   
+}
+.like{
+    font-size: 15px;
+    float: right;
+    margin-top: -56px;
+}
+.youtubebtn{
+    position:absolute;
+    height:30%;
+    background-color: black;
+    width: 100%;
+    margin-top: 3700px;
+    text-align: center;
+}
+.youtubebtn a{
+    text-decoration: none;
+    padding: 10px 30px;
+    background: greenyellow;
+    color: black;
+    font-weight: 700;
+    border-radius: 40px;
+}
+.youtubebtn i{
+    padding:0px 4px;
+    font-size: 19px;
+}
+.footer{
+    position: absolute;
+    margin-top: 3860px;
+    height: 20vh;
+    color: white;
+    background:#141414;
+    width: 100%;
+}
+
+.logopart img{
+    height:7vh;
+    margin-left: 70px;
+    margin-top: -50px;
+}
+.logopart h1{
+    color:greenyellow;
+font-size: 25px;
+margin-top: 40px;
+margin-left: 120px;
+}
+.footer-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.copyright{
+    font-size: 16px;
+    font-weight: 500;
+    margin-top: 30px;
+}
+.socials i{
+    font-size: 27px;
+    margin-top: 30px;
+    padding: 0px 4px;
+    color: greenyellow;
+}
+.btn4{
+    margin-right: 60px;
+    margin-top: 30px;
+}
+.btn4 a{
+    text-decoration: none;
+    padding: 10px 25px;
+    color: black;
+    background: greenyellow;
+    border-radius: 30px;
+}
+
+.scroll{
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    background: greenyellow;
+    border-radius: 50px;
+    bottom: 100px;
+    right: 50px;
+    text-decoration: none;
+    font-size: 22px;
+    line-height: 50px;
+    text-align: center;
+}
+.scroll i{
+    color: black;
+}
+.hamburger{
+    background-color: transparent;
+    border: 0;
+    color: white;
+    text-decoration: none;
+    display: none;
+    cursor: pointer;
+}
+.hamburger:focus{
+    outline: none;
+}
+::-webkit-scrollbar{
+    width: 5px;
+    height: 3px;
+}
+
+::-webkit-scrollbar-track{
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
+}
+
+::-webkit-scrollbar-thumb{
+    background: greenyellow;
+    border-radius: 10px;
+}
+
+
+@media(max-width:360px)
+{
+    .nav ul{
+        display: none;
+    }
+    .hamburger {
+        display: block; 
+    }
+}
+/*==footer==*/
+footer {
+    position: fixed;
+    bottom: 0;
+   
+}
+
+@media (max-height:800px) {
+    footer {
+        position: static;
+    }
+    header {
+        padding-top: 40px;
+    }
+}
+
+.footer-distributed {
+    background-color: #000000;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    font: bold 16px sans-serif;
+    padding: 50px 50px 60px 50px;
+}
+
+.footer-distributed .footer-left, .footer-distributed .footer-center, .footer-distributed .footer-right {
+    display: inline-block;
+    vertical-align: top;
+}
+
+/* Footer left */
+
+.footer-distributed .footer-left {
+    width: 30%;
+}
+
+.footer-distributed h3 {
+    color: rgba(255, 255, 255, 0.673);
+    font: normal 36px 'Cookie', cursive;
+    margin: 0;
+}
+
+
+.footer-distributed h3 span {
+    color:greenyellow;
+}
+
+/* Footer links */
+
+.footer-distributed .footer-links {
+    color: rgba(255, 255, 255, 0.673);
+    margin: 20px 0 12px;
+}
+
+.footer-distributed .footer-links a {
+    display: inline-block;
+    line-height: 1.8;
+    text-decoration: none;
+    color: inherit;
+}
+
+.footer-distributed .footer-company-name {
+    color: #8f9296;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+}
+
+/* Footer Center */
+
+.footer-distributed .footer-center {
+    width: 35%;
+}
+
+.footer-distributed .footer-center i {
+    background-color: #33383b;
+    color: rgba(255, 255, 255, 0.673);
+    font-size: 25px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 42px;
+    margin: 10px 15px;
+    vertical-align: middle;
+}
+
+.footer-distributed .footer-center i.fa-envelope {
+    font-size: 17px;
+    line-height: 38px;
+}
+
+.footer-distributed .footer-center p {
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.673);
+    vertical-align: middle;
+    margin: 0;
+}
+
+.footer-distributed .footer-center p span {
+    display: block;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 2;
+}
+
+.footer-distributed .footer-center p a {
+    color:greenyellow;
+    text-decoration: none;
+    ;
+}
+
+/* Footer Right */
+.footer-distributed .footer-right {
+    width: 30%;
+}
+
+.footer-distributed .footer-company-about {
+    line-height: 20px;
+    color: #92999f;
+    font-size: 13px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.footer-distributed .footer-company-about span {
+    display: block;
+    color: rgba(255, 255, 255, 0.673);
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.footer-distributed .footer-icons {
+    margin-top: 25px;
+}
+
+.footer-distributed .footer-icons a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    background-color: #646769;
+    border-radius: 2px;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    line-height: 35px;
+    margin-right: 3px;
+    margin-bottom: 5px;
+}
+
+.footer-distributed .footer-icons a:hover {
+    background-color: greenyellow;
+}
+
+.footer-links a:hover {
+    color: greenyellow;
+}
+
+@media (max-width: 1000px) {
+    .footer-distributed .footer-left, .footer-distributed .footer-center, .footer-distributed .footer-right {
+        display: block;
+        width: 100%;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+    .footer-distributed .footer-center i {
+        margin-left: 0;
+    }
+}

@@ -1,0 +1,32 @@
+# Dependency directories
+node_modules/
+server/node_modules/
+jspm_packages/
+
+# Environment configurations & Secrets
+.env
+*.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+server/.env
+server/.env.*
+!.env.example
+!server/.env.example
+
+# Server temporary files or logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+logs/
+*.log
+
+# IDE & Editor files
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+

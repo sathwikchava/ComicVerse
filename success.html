@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful - ComicVerse</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .success-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px 40px 20px;
+        }
+
+        .success-card {
+            background: rgba(18, 18, 18, 0.8);
+            border: 1px solid rgba(173, 255, 47, 0.4);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.6), 0 0 20px rgba(173, 255, 47, 0.15);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 15px;
+            width: 100%;
+            max-width: 550px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .icon-container {
+            font-size: 4.5rem;
+            color: greenyellow;
+            margin-bottom: 20px;
+            animation: scaleUp 0.5s ease-out;
+        }
+
+        @keyframes scaleUp {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .success-card h2 {
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        .success-card h2 span {
+            color: greenyellow;
+        }
+
+        .success-card p {
+            color: #cccccc;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .order-details {
+            background: rgba(30, 30, 30, 0.6);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: left;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .order-details h3 {
+            font-size: 1.1rem;
+            color: greenyellow;
+            margin-top: 0;
+            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 8px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .detail-label {
+            color: #999999;
+        }
+
+        .detail-value {
+            color: #ffffff;
+            font-weight: 500;
+        }
+
+        .purchased-items {
+            margin-top: 15px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+
+        .item-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+        }
+
+        .item-row:last-child {
+            border-bottom: none;
+        }
+
+        .home-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: greenyellow;
+            color: #000000;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .home-btn:hover {
+            background: #adff2fdd;
+            box-shadow: 0 0 15px rgba(173, 255, 47, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .home-btn:active {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <header>
+            <input type="checkbox" name="" id="chk1">
+            <div class="logo">
+                <h3>Comic<span>Verse</span></h3>
+            </div>
+            <ul>
+                <li><a href="home.html" class="nav_items">Home</a></li>
+                <li><a href="movies.html" class="nav_items">Movies</a></li>
+                <li><a href="char.html" class="nav_items">Characters</a></li>
+                <li><a href="index.html" class="nav_items">Store</a></li>
+                <li>
+                    <a href="cart.html">
+                        <div class="cart">
+                            <div id="cart_amount" class="nav_items">🛒</div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </header>
+    </div>
+
+    <div class="success-container">
+        <div class="success-card">
+            <div class="icon-container">
+                <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <h2>Order<span> Placed!</span></h2>
+            <p>Thank you for your purchase. Your payment was verified successfully.</p>
+
+            <div class="order-details" id="order-info" style="display: none;">
+                <h3>Transaction Details</h3>
+                <div class="detail-row">
+                    <span class="detail-label">Order DB ID:</span>
+                    <span class="detail-value" id="order-id-val"></span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status:</span>
+                    <span class="detail-value" style="color: greenyellow;">PAID</span>
+                </div>
+                <div class="purchased-items" id="purchased-items-list">
+                    <!-- items will be rendered here -->
+                </div>
+            </div>
+
+            <a href="index.html" class="home-btn">Continue Shopping</a>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script>
+        // Clear local storage cart
+        localStorage.removeItem('data');
+        
+        // Update navigation cart amount display
+        const cartIcon = document.getElementById("cart_amount");
+        if (cartIcon) cartIcon.innerHTML = 0;
+
+        // Render last order details if available
+        const lastOrder = JSON.parse(localStorage.getItem('lastOrder'));
+        if (lastOrder) {
+            document.getElementById('order-info').style.display = 'block';
+            document.getElementById('order-id-val').innerText = lastOrder.orderId;
+            
+            const listContainer = document.getElementById('purchased-items-list');
+            listContainer.innerHTML = '';
+            
+            if (lastOrder.items && lastOrder.items.length > 0) {
+                lastOrder.items.forEach(item => {
+                    const row = document.createElement('div');
+                    row.className = 'item-row';
+                    row.innerHTML = `
+                        <span>${item.name} (x${item.item || item.quantity || 1})</span>
+                        <span style="font-weight: 500;">$${(item.price * (item.item || item.quantity || 1)).toFixed(2)}</span>
+                    `;
+                    listContainer.appendChild(row);
+                });
+            }
+            
+            // Clean up last order cache so it doesn't linger forever
+            localStorage.removeItem('lastOrder');
+        }
+    </script>
+    <script src="https://kit.fontawesome.com/a5b152ec93.js" crossorigin="anonymous"></script>
+</body>
+</html>

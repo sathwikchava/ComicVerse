@@ -1,0 +1,156 @@
+<html>
+
+<head>
+    <title>Store</title>
+    <link rel="stylesheet" href="store.css">
+</head>
+<style type="text/css">
+</style>
+
+<body>
+    <div class="navbar">
+        <header>
+            <input type="checkbox" name="" id="chk1">
+            <div class="logo">
+                <h3>Comic<span>Verse</span></h3>
+            </div>
+            <div class="search-box">
+                <form>
+                    <input type="text" name="search" id="srch" placeholder="Search">
+                    <button type="submit"><i class="fa fa-search"></i></button>
+                </form>
+            </div>
+            <ul>
+                <li><a href="home.html" class="nav_items">Home</a></li>
+                <li><a href="movies.html" class="nav_items">Movies</a></li>
+                <li><a href="char.html" class="nav_items">Characters</a></li>
+                <li><a href="index.html" class="nav_items">Store</a></li>
+                <li>
+                    <a href="cart.html">
+                        <div class="cart">
+                            <div id="cart_amount" class="nav_items">🛒</div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+            <div class="menu">
+                <label for="search symbol">
+                    <i class="fa fa-bars"></i>
+                </label>
+            </div>
+        </header>
+    </div>
+
+    <div class="banner">
+        <div class="main">
+            <div class="Heading">
+                <h1>STORE</h1>
+            </div>
+            <div class="card">
+                <div class="image">
+                    <img src="https://res.cloudinary.com/dd0qhwv5w/image/upload/v1715249598/vluewgo3lfzhuzo7uckg.jpg">
+                </div>
+                <div class="name">
+                    BOOK
+                </div>
+                <div class="B"><button class="Button" onclick="add(this);">Add to Cart</button></div>
+            </div>
+            <div class="card">
+                <div class="image">
+                    <img src="https://res.cloudinary.com/dd0qhwv5w/image/upload/v1715249598/vluewgo3lfzhuzo7uckg.jpg">
+                </div>
+                <div class="name">
+                    BOOK
+                </div>
+                <div class="B"><button class="Button" onclick="add(this);">Add to Cart</button></div>
+            </div>
+            <div class="card">
+                <div class="image">
+                    <img src="https://res.cloudinary.com/dd0qhwv5w/image/upload/v1715249598/vluewgo3lfzhuzo7uckg.jpg">
+                </div>
+                <div class="name">
+                    BOOK
+                </div>
+                <div class="B"><button class="Button" onclick="add(this);">Add to Cart</button></div>
+            </div>
+            <div class="card">
+                <div class="image">
+                    <img src="https://res.cloudinary.com/dd0qhwv5w/image/upload/v1715249598/vluewgo3lfzhuzo7uckg.jpg">
+                </div>
+                <div class="name">
+                    BOOK
+                </div>
+                <div class="B"><button class="Button" onclick="add(this);">Add to Cart</button></div>
+            </div>
+            <div class="card">
+                <div class="image">
+                    <img src="https://res.cloudinary.com/dd0qhwv5w/image/upload/v1715249598/vluewgo3lfzhuzo7uckg.jpg">
+                </div>
+                <div class="name">
+                    BOOK
+                </div>
+                <div class="B"><button class="Button" onclick="add(this);">Add to Cart</button></div>
+            </div>
+            <div class="card">
+                <div class="image">
+                    <img src="https://res.cloudinary.com/dd0qhwv5w/image/upload/v1715249598/vluewgo3lfzhuzo7uckg.jpg">
+                </div>
+                <div class="name">
+                    BOOK
+                </div>
+                <div class="B"><button class="Button" onclick="add(this);">Add to Cart</button></div>
+            </div>
+            <div class="card">
+                <div class="image">
+                    <img src="https://res.cloudinary.com/dd0qhwv5w/image/upload/v1715249598/vluewgo3lfzhuzo7uckg.jpg">
+                </div>
+                <div class="name">
+                    BOOK
+                </div>
+                <div class="B"><button class="Button" onclick="add(this);">Add to Cart</button></div>
+            </div>
+            <div class="card">
+                <div class="image">
+                    <img src="https://res.cloudinary.com/dd0qhwv5w/image/upload/v1715249598/vluewgo3lfzhuzo7uckg.jpg">
+                </div>
+                <div class="name">
+                    BOOK
+                </div>
+                <div class="B"><button class="Button" onclick="add(this);">Add to Cart</button></div>
+            </div>
+            <div class="card">
+                <div class="image">
+                    <img src="https://res.cloudinary.com/dd0qhwv5w/image/upload/v1715249598/vluewgo3lfzhuzo7uckg.jpg">
+                </div>
+                <div class="name">
+                    BOOK
+                </div>
+                <div class="B"><button class="Button" onclick="add(this);">Add to Cart</button></div>
+            </div>
+            <div class="card">
+                <div class="image">
+                    <img src="https://res.cloudinary.com/dd0qhwv5w/image/upload/v1715249598/vluewgo3lfzhuzo7uckg.jpg">
+                </div>
+                <div class="name">
+                    BOOK
+                </div>
+                <div class="B"><button class="Button" onclick="add(this);">Add to Cart</button></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function add(buttonElement) {
+            if (buttonElement.innerText === 'Add to Cart') {
+                buttonElement.innerText = 'Added';
+                buttonElement.classList.add('is-added');
+            }
+            else {
+                buttonElement.innerText = 'Add to Cart';
+                buttonElement.classList.remove('is-added');
+            }
+        }
+    </script>
+    </div>
+</body>
+
+</html>

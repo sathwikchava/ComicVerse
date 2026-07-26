@@ -1,0 +1,496 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    border: none;
+    outline: none;
+}
+
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    background-color: black;
+}
+
+.navbar {
+    margin-top: 100px;
+}
+
+header {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    z-index: 99;
+    box-shadow: 5px 5px 5px 5px #000;
+    background: rgb(0, 0, 0);
+    top: 0;
+    left: 0;
+}
+
+#chk1 {
+    display: none;
+}
+
+i {
+    color: #000000;
+    cursor: pointer;
+}
+
+.logo {
+    flex: 1;
+    color: #fff;
+    color: #ffffff;
+    font: normal 30px 'Cookie', cursive;
+    margin-left: 50px;
+    margin-bottom: 5px;
+}
+
+header .logo h3 span {
+    color: greenyellow;
+    margin-bottom: 30px;
+}
+
+.search-box {
+    flex: 1;
+    position: relative;
+    margin-bottom: 3px;
+    margin-right: 250px;
+}
+
+.search-box input {
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: none;
+    background: #f2f2f2;
+    border-radius: 30px;
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    padding-left: 5px;
+    padding-right: 40px;
+    text-align: center;
+}
+
+.search-box button {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 30px;
+    border: none;
+    position: absolute;
+    top: 0;
+    right: 5px;
+    transform: scale(0.9);
+    background: greenyellow;
+    color: #fff;
+
+}
+
+header ul {
+    flex: 2;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+header ul li {
+    list-style: none;
+    margin-top: 50px;
+}
+
+header ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 10px 15px;
+}
+
+.nav_items:hover {
+    border-bottom: 2px solid greenyellow;
+    border-top: 2px solid greenyellow;
+}
+
+@media(max-width:1000px) {
+    .search-box button {
+        position: absolute;
+    }
+
+    header ul {
+        position: fixed;
+        top: 100px;
+        right: -100%;
+        background: rgba(0, 0, 0, 0.5);
+        height: calc(100vh - 100px);
+        width: 50%;
+        flex-direction: column;
+        align-items: center;
+        transition: right 0.5s linear;
+    }
+
+    header .menu {
+        display: block;
+        width: 100px;
+        text-align: right;
+    }
+
+    #search symbol:checked~ul {
+        right: 0;
+
+    }
+
+}
+
+.cart {
+    position: relative;
+    top: -17px;
+}
+
+#cart_amount {
+    padding-bottom: 10px;
+}
+
+.main {
+    background: greenyellow;
+    color: greenyellow;
+    white-space: nowrap;
+    margin: 5px;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    width: 200px;
+    height: 300px;
+    border: 1px solid blanchedalmond;
+    border-radius: 15px;
+    font-weight: bolder;
+    font-size: larger;
+}
+
+.main1 {
+    white-space: nowrap;
+    display: inline-flex;
+}
+
+.img {
+    width: 200px;
+    height: 300px;
+    border-radius: 15px;
+    cursor: pointer;
+    display: block;
+}
+
+.container {
+    position: relative;
+    width: 50%;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 10;
+    overflow: hidden;
+    width: 200px;
+    height: 0;
+    cursor: pointer;
+    border-radius: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+
+
+}
+
+.container:hover .img {
+    filter: blur(4px);
+
+}
+
+.container:hover .overlay {
+    height: 100%;
+    opacity: 1;
+}
+
+.text {
+    color: rgb(255, 255, 255);
+    font-size: 35px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.mySlides {
+    display: center;
+}
+
+.img1 {
+    position: relative;
+    display: center;
+}
+
+/* Slideshow container */
+.slideshow-container {
+    max-width: 1489.5px;
+    position: center;
+    cursor: pointer;
+}
+
+.slider {
+    width: 1470px;
+    height: 315px;
+    display: flex;
+    overflow-x: scroll;
+
+}
+
+.slider div {
+    width: fill;
+    display: fill;
+}
+
+.slider::-webkit-scrollbar {
+    display: none;
+
+}
+
+.slider-wrap {
+    display: flex;
+    align-items: center;
+    margin: 10% auto;
+    justify-content: center;
+
+}
+
+.dot {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active {
+    background-color: #615f5f;
+}
+
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {
+        opacity: .4
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
+@media only screen and (max-width: 300px) {
+    .text {
+        font-size: 11px
+    }
+}
+
+svg {
+    position: fixed;
+    padding: 0 0 0 1340px;
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: 25px;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 3px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 8px rgb(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+    background: greenyellow;
+    border-radius: 10px;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+
+}
+
+@media (max-height:800px) {
+    footer {
+        position: static;
+    }
+
+    header {
+        padding-top: 40px;
+    }
+}
+
+.footer-distributed {
+    background-color: #000000;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    font: bold 16px sans-serif;
+    padding: 50px 50px 60px 50px;
+}
+
+.footer-distributed .footer-left,
+.footer-distributed .footer-center,
+.footer-distributed .footer-right {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.footer-distributed .footer-left {
+    width: 30%;
+}
+
+.footer-distributed h3 {
+    color: rgba(255, 255, 255, 0.673);
+    font: normal 36px 'Cookie', cursive;
+    margin: 0;
+}
+
+.footer-distributed h3 span {
+    color: greenyellow;
+}
+
+.footer-distributed .footer-links {
+    color: rgba(255, 255, 255, 0.673);
+    margin: 20px 0 12px;
+}
+
+.footer-distributed .footer-links a {
+    display: inline-block;
+    line-height: 1.8;
+    text-decoration: none;
+    color: inherit;
+}
+
+.footer-distributed .footer-company-name {
+    color: #8f9296;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.footer-distributed .footer-center {
+    width: 35%;
+}
+
+.footer-distributed .footer-center i {
+    background-color: #33383b;
+    color: rgba(255, 255, 255, 0.673);
+    font-size: 25px;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 42px;
+    margin: 10px 15px;
+    vertical-align: middle;
+}
+
+.footer-distributed .footer-center i.fa-envelope {
+    font-size: 17px;
+    line-height: 38px;
+}
+
+.footer-distributed .footer-center p {
+    display: inline-block;
+    color: rgba(255, 255, 255, 0.673);
+    vertical-align: middle;
+    margin: 0;
+}
+
+.footer-distributed .footer-center p span {
+    display: block;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 2;
+}
+
+.footer-distributed .footer-center p a {
+    color: greenyellow;
+    text-decoration: none;
+    ;
+}
+
+.footer-distributed .footer-right {
+    width: 30%;
+}
+
+.footer-distributed .footer-company-about {
+    line-height: 20px;
+    color: #92999f;
+    font-size: 13px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.footer-distributed .footer-company-about span {
+    display: block;
+    color: rgba(255, 255, 255, 0.673);
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.footer-distributed .footer-icons {
+    margin-top: 25px;
+}
+
+.footer-distributed .footer-icons a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    background-color: #646769;
+    border-radius: 2px;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    line-height: 35px;
+    margin-right: 3px;
+    margin-bottom: 5px;
+}
+
+.footer-distributed .footer-icons a:hover {
+    background-color: greenyellow;
+}
+
+.footer-links a:hover {
+    color: greenyellow;
+}
+
+@media (max-width: 1000px) {
+
+    .footer-distributed .footer-left,
+    .footer-distributed .footer-center,
+    .footer-distributed .footer-right {
+        display: block;
+        width: 100%;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+
+    .footer-distributed .footer-center i {
+        margin-left: 0;
+    }
+}

@@ -1,0 +1,91 @@
+* {
+    background-color: wheat;
+}
+
+.main {
+    background: red;
+    color: red;
+    overflow: auto;
+    white-space: nowrap;
+    margin: 5;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    width: 140px;
+    height: 190px;
+    border: 1px solid black;
+    border-radius: 15px;
+    font-weight: bolder;
+    font-size: larger
+}
+
+.main1 {
+    overflow: auto;
+    white-space: nowrap;
+    display: inline-flex;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+
+.flip-box {
+    background-color: transparent;
+    width: 140px;
+    height: 190px;
+    border: 1px solid black;
+    perspective: 1000px;
+    border-radius: 15px;
+    cursor: pointer;
+
+}
+
+.flip-box-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+
+.flip-box:hover .flip-box-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-box-front,
+.flip-box-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+.flip-box-front {
+    background-color: black;
+    color: black;
+}
+
+.flip-box-back {
+    background-color: red;
+    color: black;
+    transform: rotateY(180deg);
+}
+::-webkit-scrollbar{
+    width: 5px;
+    height: 3px;
+}
+
+::-webkit-scrollbar-track{
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
+}
+
+::-webkit-scrollbar-thumb{
+    background: greenyellow;
+    border-radius: 10px;
+}

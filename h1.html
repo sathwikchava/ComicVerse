@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>h1.html</title>
+</head>
+<body>
+    <h1>Product Page</h1>
+    <img id="productImage" src="https://via.placeholder.com/150" alt="Product Image">
+    <button id="addToCartButton" onclick="add()">Add to Cart</button>
+    <button id="cartButton" onclick="cart()">Cart</button>
+
+        <script>
+                    function add_item(){
+                        var x=document.querySelector('#c1').innerHTML;
+                        localStorage.setItem('book1',x);
+
+                    }
+                    function viewcart(){
+                        window.location.href='bhanucart.html';
+                    }
+                    
+        </script>
+</body>
+</html>

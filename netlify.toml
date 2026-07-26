@@ -1,0 +1,22 @@
+# Netlify Configuration File
+
+[build]
+  # Serve from the root folder (default for static multi-page HTML site)
+  publish = "."
+
+# SPA Redirects & Proxy Rules to route API requests to the Render backend server
+# This prevents CORS errors completely by proxying /api/ requests to the Render URL
+[[redirects]]
+  from = "/api/*"
+  to = "https://comicverse-backend.onrender.com/api/:splat"
+  status = 200
+  force = true
+
+# Fallback headers for security and caching
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "no-referrer-when-downgrade"

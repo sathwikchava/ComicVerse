@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - ComicVerse</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .auth-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 80px 20px 40px 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <header>
+            <input type="checkbox" name="" id="chk1">
+            <div class="logo">
+                <h3>Comic<span>Verse</span></h3>
+            </div>
+            <ul>
+                <li><a href="home.html" class="nav_items">Home</a></li>
+                <li><a href="movies.html" class="nav_items">Movies</a></li>
+                <li><a href="char.html" class="nav_items">Characters</a></li>
+                <li><a href="index.html" class="nav_items">Store</a></li>
+                <li>
+                    <a href="cart.html">
+                        <div class="cart">
+                            <div id="cart_amount" class="nav_items">🛒</div>
+                        </div>
+                    </a>
+                </li>
+            </ul>
+        </header>
+    </div>
+
+    <div class="auth-container">
+        <!-- Clerk Sign-up Component mounts here -->
+        <div id="clerk-sign-up"></div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script>
+        // Mount Clerk Sign Up component on page load
+        window.addEventListener('DOMContentLoaded', async () => {
+            try {
+                if (typeof initClerk === 'function') {
+                    const clerk = await initClerk();
+                    const redirect = new URLSearchParams(window.location.search).get('redirect') || 'home.html';
+                    
+                    clerk.mountSignUp(document.getElementById('clerk-sign-up'), {
+                        signInUrl: 'login.html',
+                        afterSignInUrl: redirect,
+                        afterSignUpUrl: redirect
+                    });
+                }
+            } catch (err) {
+                console.error("Error loading Clerk signup component:", err);
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/de27xvxon/image/upload/v1715758978/OIP_tzwkgk.jpg"/>
+    <title>c1.html</title>
+</head>
+<body>
+    <h1>Cart Page</h1>
+    <div id="cartContent">
+        <!-- The image will be displayed here if added -->
+    </div>
+
+    <script>
+        function add_item(){
+            var x=document.querySelector('#c1').innerHTML;
+            localStorage.setItem('book1',x);
+
+        }
+        function viewcart(){
+            window.location.href='bhanucart.html';
+        }
+        
+    </script>
+</body>
+</html>

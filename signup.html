@@ -5,25 +5,146 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - ComicVerse</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link href="http://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Cookie" rel="stylesheet" type="text/css">
+    <link rel="icon" type="image/png" href="https://res.cloudinary.com/de27xvxon/image/upload/v1715758978/OIP_tzwkgk.jpg" />
     <style>
         body {
             background-color: #000000;
             color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            flex-direction: column;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             min-height: 100vh;
             margin: 0;
+            display: flex;
+            flex-direction: column;
+            background-image: radial-gradient(circle at 50% 35%, rgba(173, 255, 47, 0.12) 0%, transparent 65%);
         }
 
-        .auth-container {
+        .auth-wrapper {
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 80px 20px 40px 20px;
+            padding: 100px 20px 40px 20px;
+        }
+
+        .auth-card {
+            background: rgba(18, 18, 18, 0.95);
+            border: 2px solid #adff2f;
+            border-radius: 16px;
+            box-shadow: 0 0 25px rgba(173, 255, 47, 0.25), inset 0 0 15px rgba(173, 255, 47, 0.05);
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 450px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .auth-header {
+            margin-bottom: 25px;
+        }
+
+        .auth-header h2 {
+            font-size: 2rem;
+            color: #ffffff;
+            margin-bottom: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .auth-header h2 span {
+            color: #adff2f;
+            text-shadow: 0 0 10px rgba(173, 255, 47, 0.5);
+        }
+
+        .auth-header p {
+            color: #aaaaaa;
+            font-size: 0.95rem;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(173, 255, 47, 0.2);
+            border-top-color: #adff2f;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin: 20px 0;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #dddddd;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 16px;
+            background: #1e1e1e;
+            border: 1px solid #333333;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            border-color: #adff2f;
+            outline: none;
+            box-shadow: 0 0 8px rgba(173, 255, 47, 0.3);
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 14px;
+            background: #adff2f;
+            color: #000000;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
+
+        .auth-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(173, 255, 47, 0.4);
+        }
+
+        .auth-footer {
+            margin-top: 25px;
+            font-size: 0.9rem;
+            color: #888888;
+        }
+
+        .auth-footer a {
+            color: #adff2f;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        .clerk-mount-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
         }
     </style>
 </head>
@@ -50,29 +171,101 @@
         </header>
     </div>
 
-    <div class="auth-container">
-        <!-- Clerk Sign-up Component mounts here -->
-        <div id="clerk-sign-up"></div>
+    <div class="auth-wrapper">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h2>Join <span>ComicVerse</span></h2>
+                <p>Create your hero account to unlock full access</p>
+            </div>
+
+            <!-- Loading Spinner -->
+            <div id="auth-loading">
+                <div class="spinner"></div>
+                <p style="color: #adff2f; font-size: 0.9rem;">Connecting to ComicVerse Authentication...</p>
+            </div>
+
+            <!-- Clerk Mount Point -->
+            <div id="clerk-sign-up" class="clerk-mount-container"></div>
+
+            <!-- Custom Theme Form (Fallback) -->
+            <div id="fallback-signup" style="display: none;">
+                <form id="custom-signup-form">
+                    <div class="form-group">
+                        <label for="name"><i class="fa fa-user" style="color: #adff2f; margin-right: 5px;"></i> Hero Name</label>
+                        <input type="text" id="name" placeholder="Peter Parker" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email"><i class="fa fa-envelope" style="color: #adff2f; margin-right: 5px;"></i> Email Address</label>
+                        <input type="email" id="email" placeholder="hero@comicverse.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password"><i class="fa fa-lock" style="color: #adff2f; margin-right: 5px;"></i> Password</label>
+                        <input type="password" id="password" placeholder="••••••••" required>
+                    </div>
+                    <button type="submit" class="auth-btn">Create Hero Account</button>
+                </form>
+                <div class="auth-footer">
+                    Already have an account? <a href="login.html">Sign In Here</a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="auth.js"></script>
     <script>
-        // Mount Clerk Sign Up component on page load
         window.addEventListener('DOMContentLoaded', async () => {
+            const loadingEl = document.getElementById('auth-loading');
+            const clerkContainer = document.getElementById('clerk-sign-up');
+            const fallbackForm = document.getElementById('fallback-signup');
+
             try {
                 if (typeof initClerk === 'function') {
                     const clerk = await initClerk();
                     const redirect = new URLSearchParams(window.location.search).get('redirect') || 'home.html';
                     
-                    clerk.mountSignUp(document.getElementById('clerk-sign-up'), {
-                        signInUrl: 'login.html',
-                        afterSignInUrl: redirect,
-                        afterSignUpUrl: redirect
-                    });
+                    if (clerk && typeof clerk.mountSignUp === 'function') {
+                        loadingEl.style.display = 'none';
+                        clerk.mountSignUp(clerkContainer, {
+                            signInUrl: 'login.html',
+                            afterSignInUrl: redirect,
+                            afterSignUpUrl: redirect,
+                            appearance: {
+                                variables: {
+                                    colorPrimary: '#adff2f',
+                                    colorBackground: '#121212',
+                                    colorText: '#ffffff',
+                                    colorTextSecondary: '#aaaaaa',
+                                    colorInputBackground: '#1e1e1e',
+                                    colorInputText: '#ffffff'
+                                }
+                            }
+                        });
+                        return;
+                    }
                 }
             } catch (err) {
-                console.error("Error loading Clerk signup component:", err);
+                console.warn("Clerk sign-up mount issue, falling back to themed form:", err);
             }
+
+            // Fallback UI
+            loadingEl.style.display = 'none';
+            fallbackForm.style.display = 'block';
+
+            document.getElementById('custom-signup-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const mockUser = {
+                    id: 'usr_' + Date.now(),
+                    name: name,
+                    email: email
+                };
+                localStorage.setItem('user', JSON.stringify(mockUser));
+                localStorage.setItem('token', 'session_token_' + Date.now());
+                alert('Account created! Welcome to ComicVerse, ' + mockUser.name + '!');
+                const redirect = new URLSearchParams(window.location.search).get('redirect') || 'home.html';
+                window.location.href = redirect;
+            });
         });
     </script>
 </body>

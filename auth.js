@@ -9,6 +9,35 @@ localStorage.setItem('BACKEND_URL', BACKEND_URL);
 const CLERK_PUBLISHABLE_KEY = 'pk_test_ZGVmaW5pdGUtdGV0cmEtMzYuY2xlcmsuYWNjb3VudHMuZGV2JA'; 
 localStorage.setItem('CLERK_PUBLISHABLE_KEY', CLERK_PUBLISHABLE_KEY);
 
+function loadScript(src, attributes = {}) {
+  return new Promise((resolve, reject) => {
+    let script = document.querySelector(`script[src="${src}"]`);
+    if (script) {
+      if (script.dataset.loaded) {
+        resolve();
+      } else {
+        script.addEventListener('load', resolve);
+        script.addEventListener('error', reject);
+      }
+      return;
+    }
+    
+    script = document.createElement('script');
+    script.src = src;
+    for (const [key, val] of Object.entries(attributes)) {
+      script.setAttribute(key, val);
+    }
+    script.async = true;
+    script.crossOrigin = "anonymous";
+    script.addEventListener('load', () => {
+      script.dataset.loaded = 'true';
+      resolve();
+    });
+    script.addEventListener('error', () => reject(new Error("Failed to load script: " + src)));
+    document.head.appendChild(script);
+  });
+}
+
 // Exposed global Clerk loader promise
 let clerkPromise = null;
 
@@ -19,62 +48,51 @@ async function initClerk() {
   
   if (clerkPromise) return clerkPromise;
 
-  clerkPromise = new Promise((resolve, reject) => {
-    let script = document.querySelector('script[src*="clerk-js"]');
-    
-    const initialize = async () => {
-      try {
-        if (!window.Clerk.isReady) {
-          await window.Clerk.load({
-            appearance: {
-              variables: {
-                colorPrimary: "#adff2f", // greenyellow theme
-                colorBackground: "#121212",
-                colorText: "#ffffff"
-              }
+  clerkPromise = (async () => {
+    let frontendApi = '';
+    try {
+      const parts = CLERK_PUBLISHABLE_KEY.split('_');
+      if (parts[2]) {
+        let base64 = parts[2].replace(/-/g, '+').replace(/_/g, '/');
+        while (base64.length % 4) {
+          base64 += '=';
+        }
+        const decoded = atob(base64);
+        frontendApi = decoded.endsWith('$') ? decoded.slice(0, -1) : decoded;
+      }
+    } catch (e) {
+      console.error("Error decoding Clerk publishable key:", e);
+    }
+
+    const domain = frontendApi || 'definite-tetra-36.clerk.accounts.dev';
+
+    // For Clerk v6, we load both @clerk/ui and @clerk/clerk-js
+    const uiUrl = `https://${domain}/npm/@clerk/ui@1/dist/ui.browser.js`;
+    const clerkUrl = `https://${domain}/npm/@clerk/clerk-js@6/dist/clerk.browser.js`;
+
+    try {
+      await Promise.all([
+        loadScript(uiUrl),
+        loadScript(clerkUrl, { 'data-clerk-publishable-key': CLERK_PUBLISHABLE_KEY })
+      ]);
+
+      if (!window.Clerk.isReady) {
+        await window.Clerk.load({
+          appearance: {
+            variables: {
+              colorPrimary: "#adff2f", // greenyellow theme
+              colorBackground: "#121212",
+              colorText: "#ffffff"
             }
-          });
-        }
-        resolve(window.Clerk);
-      } catch (err) {
-        reject(err);
-      }
-    };
-
-    if (window.Clerk) {
-      initialize();
-      return;
-    }
-
-    if (!script) {
-      let frontendApi = '';
-      try {
-        const parts = CLERK_PUBLISHABLE_KEY.split('_');
-        if (parts[2]) {
-          let base64 = parts[2].replace(/-/g, '+').replace(/_/g, '/');
-          while (base64.length % 4) {
-            base64 += '=';
           }
-          const decoded = atob(base64);
-          frontendApi = decoded.endsWith('$') ? decoded.slice(0, -1) : decoded;
-        }
-      } catch (e) {
-        console.error("Error decoding Clerk publishable key:", e);
+        });
       }
-
-      const domain = frontendApi || 'mighty-frog-22.clerk.accounts.dev';
-
-      script = document.createElement('script');
-      script.src = `https://${domain}/npm/@clerk/clerk-js@latest/dist/clerk.browser.js`;
-      script.setAttribute('data-clerk-publishable-key', CLERK_PUBLISHABLE_KEY);
-      script.async = true;
-      script.crossOrigin = "anonymous";
-      document.head.appendChild(script);
+      return window.Clerk;
+    } catch (err) {
+      clerkPromise = null; // Reset on failure
+      throw err;
     }
-
-    script.addEventListener('load', initialize);
-    script.addEventListener('error', () => reject(new Error("Failed to load Clerk script")));
-  });
+  })();
 
   return clerkPromise;
 }

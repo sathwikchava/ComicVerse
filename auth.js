@@ -71,10 +71,8 @@ async function initClerk() {
     const clerkUrl = `https://${domain}/npm/@clerk/clerk-js@6/dist/clerk.browser.js`;
 
     try {
-      await Promise.all([
-        loadScript(uiUrl),
-        loadScript(clerkUrl, { 'data-clerk-publishable-key': CLERK_PUBLISHABLE_KEY })
-      ]);
+      await loadScript(uiUrl);
+      await loadScript(clerkUrl, { 'data-clerk-publishable-key': CLERK_PUBLISHABLE_KEY });
 
       if (!window.Clerk.isReady) {
         await window.Clerk.load({

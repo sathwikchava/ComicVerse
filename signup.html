@@ -245,6 +245,15 @@
                 }
             } catch (err) {
                 console.warn("Clerk sign-up mount issue, falling back to themed form:", err);
+                const errorText = document.createElement('p');
+                errorText.style.color = '#ff4500';
+                errorText.style.fontSize = '0.9rem';
+                errorText.style.marginTop = '10px';
+                errorText.textContent = "Clerk Error: " + err.message;
+                loadingEl.appendChild(errorText);
+                
+                // Show fallback after 3 seconds so the user can read the error
+                await new Promise(r => setTimeout(r, 3000));
             }
 
             // Fallback UI

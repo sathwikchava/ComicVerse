@@ -16,7 +16,7 @@
 ## 🔗 Live Deployments
 
 - 🌐 **Frontend (Vercel)**: [Deployed on Vercel Global CDN](https://comic-verse-smoky.vercel.app/home)
-- 🌐 **Frontend (Netlify)**: [Deployed on Netlify Global CDN]((https://comicverse-sathwik.netlify.app/home))
+- 🌐 **Frontend (Netlify)**: [Deployed on Netlify Global CDN](https://comicverse-sathwik.netlify.app/home)
 - ⚙️ **Backend API (Render)**: [https://comicverse-ooir.onrender.com](https://comicverse-ooir.onrender.com)
 
 ---

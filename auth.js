@@ -26,7 +26,7 @@ async function initClerk() {
       try {
         if (!window.Clerk.isReady) {
           await window.Clerk.load({
-            theme: {
+            appearance: {
               variables: {
                 colorPrimary: "#adff2f", // greenyellow theme
                 colorBackground: "#121212",
@@ -51,7 +51,11 @@ async function initClerk() {
       try {
         const parts = CLERK_PUBLISHABLE_KEY.split('_');
         if (parts[2]) {
-          const decoded = atob(parts[2]);
+          let base64 = parts[2].replace(/-/g, '+').replace(/_/g, '/');
+          while (base64.length % 4) {
+            base64 += '=';
+          }
+          const decoded = atob(base64);
           frontendApi = decoded.endsWith('$') ? decoded.slice(0, -1) : decoded;
         }
       } catch (e) {

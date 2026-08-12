@@ -142,6 +142,49 @@ async function updateNavbarAuth() {
     }
   } catch (err) {
     console.error("Clerk updateNavbarAuth error:", err);
+    try {
+      const navList = document.querySelector('.navbar header ul') || document.querySelector('header ul');
+      if (navList) {
+        const existingAuthItem = document.getElementById('auth-nav-item');
+        if (existingAuthItem) {
+          existingAuthItem.remove();
+        }
+        const authLi = document.createElement('li');
+        authLi.id = 'auth-nav-item';
+        
+        const userStr = localStorage.getItem('user');
+        if (userStr) {
+          const user = JSON.parse(userStr);
+          authLi.innerHTML = `
+            <a href="#" id="custom-logout-btn" class="nav_items" style="color: #adff2f;">Logout (${user.name})</a>
+          `;
+          const cartLi = navList.querySelector('a[href="cart.html"]')?.parentElement || navList.querySelector('.cart')?.parentElement;
+          if (cartLi) {
+            navList.insertBefore(authLi, cartLi);
+          } else {
+            navList.appendChild(authLi);
+          }
+          document.getElementById('custom-logout-btn')?.addEventListener('click', (e) => {
+            e.preventDefault();
+            localStorage.removeItem('user');
+            localStorage.removeItem('token');
+            window.location.reload();
+          });
+        } else {
+          authLi.innerHTML = `
+            <a href="login.html" class="nav_items">Login</a>
+          `;
+          const cartLi = navList.querySelector('a[href="cart.html"]')?.parentElement || navList.querySelector('.cart')?.parentElement;
+          if (cartLi) {
+            navList.insertBefore(authLi, cartLi);
+          } else {
+            navList.appendChild(authLi);
+          }
+        }
+      }
+    } catch (e) {
+      console.error("Fallback navbar update error:", e);
+    }
   }
 }
 

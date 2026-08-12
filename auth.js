@@ -6,7 +6,7 @@ const BACKEND_URL = (window.location.hostname === 'localhost' || window.location
 localStorage.setItem('BACKEND_URL', BACKEND_URL);
 
 // Clerk Publishable Key config. Replace with your own key from Clerk Dashboard.
-const CLERK_PUBLISHABLE_KEY = 'pk_test_bWlnaHR5LWZyb2ctMjIuY2xlcmsuYWNjb3VudHMuZGV2JA'; 
+const CLERK_PUBLISHABLE_KEY = 'pk_test_ZGVmaW5pdGUtdGV0cmEtMzYuY2xlcmsuYWNjb3VudHMuZGV2JA'; 
 localStorage.setItem('CLERK_PUBLISHABLE_KEY', CLERK_PUBLISHABLE_KEY);
 
 // Exposed global Clerk loader promise

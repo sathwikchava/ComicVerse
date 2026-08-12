@@ -4,7 +4,41 @@
   # Serve from the root folder (default for static multi-page HTML site)
   publish = "."
 
-# SPA Redirects & Proxy Rules to route API requests to the Render backend server
+[build.processing.html]
+  pretty_urls = true
+
+# Clean URLs Redirects (Internally rewrites /path to /path.html)
+[[redirects]]
+  from = "/home"
+  to = "/home.html"
+  status = 200
+
+[[redirects]]
+  from = "/login"
+  to = "/login.html"
+  status = 200
+
+[[redirects]]
+  from = "/signup"
+  to = "/signup.html"
+  status = 200
+
+[[redirects]]
+  from = "/cart"
+  to = "/cart.html"
+  status = 200
+
+[[redirects]]
+  from = "/movies"
+  to = "/movies.html"
+  status = 200
+
+[[redirects]]
+  from = "/char"
+  to = "/char.html"
+  status = 200
+
+# Proxy Rules to route API requests to the Render backend server
 # This prevents CORS errors completely by proxying /api/ requests to the Render URL
 [[redirects]]
   from = "/api/*"

@@ -121,7 +121,9 @@ async function updateNavbarAuth() {
       `;
 
       // Insert just before the cart item if possible, or append to the end
-      const cartLi = navList.querySelector('a[href="cart.html"]')?.parentElement || navList.querySelector('.cart')?.parentElement;
+      const cartLi = navList.querySelector('a[href="cart.html"]')?.closest('li') || 
+                     navList.querySelector('a[href="/cart"]')?.closest('li') ||
+                     navList.querySelector('.cart')?.closest('li');
       if (cartLi) {
         navList.insertBefore(authLi, cartLi);
       } else {
@@ -151,7 +153,9 @@ async function updateNavbarAuth() {
         <a href="login.html" class="nav_items">Login</a>
       `;
       
-      const cartLi = navList.querySelector('a[href="cart.html"]')?.parentElement || navList.querySelector('.cart')?.parentElement;
+      const cartLi = navList.querySelector('a[href="cart.html"]')?.closest('li') || 
+                     navList.querySelector('a[href="/cart"]')?.closest('li') ||
+                     navList.querySelector('.cart')?.closest('li');
       if (cartLi) {
         navList.insertBefore(authLi, cartLi);
       } else {
@@ -176,7 +180,9 @@ async function updateNavbarAuth() {
           authLi.innerHTML = `
             <a href="#" id="custom-logout-btn" class="nav_items" style="color: #adff2f;">Logout (${user.name})</a>
           `;
-          const cartLi = navList.querySelector('a[href="cart.html"]')?.parentElement || navList.querySelector('.cart')?.parentElement;
+          const cartLi = navList.querySelector('a[href="cart.html"]')?.closest('li') || 
+                         navList.querySelector('a[href="/cart"]')?.closest('li') ||
+                         navList.querySelector('.cart')?.closest('li');
           if (cartLi) {
             navList.insertBefore(authLi, cartLi);
           } else {
@@ -192,7 +198,9 @@ async function updateNavbarAuth() {
           authLi.innerHTML = `
             <a href="login.html" class="nav_items">Login</a>
           `;
-          const cartLi = navList.querySelector('a[href="cart.html"]')?.parentElement || navList.querySelector('.cart')?.parentElement;
+          const cartLi = navList.querySelector('a[href="cart.html"]')?.closest('li') || 
+                         navList.querySelector('a[href="/cart"]')?.closest('li') ||
+                         navList.querySelector('.cart')?.closest('li');
           if (cartLi) {
             navList.insertBefore(authLi, cartLi);
           } else {
